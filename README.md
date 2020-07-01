@@ -6,8 +6,7 @@
 
 ## Logo
 
-
-![logo](images/swaggerjmx.png)
+![logo](https://github.com/Pactortester/swaggerjmx/blob/master/images/swaggerjmx.png)
 
 
 ## 安装
@@ -32,7 +31,7 @@ pip install swaggerjmx
 ## 适用场景
 
 
-1. 由于接口文档编写耗时，而且需要持续维护，耗时耗力，可以一键自动生成接口文档.
+1. 由于接口文档编写耗时，而且需要持续维护，耗时耗力，使用此工具可以一键自动生成接口文档.
 2. swagger-ui接口文档一键生成jmx文件供jmeter使用.
 
 
