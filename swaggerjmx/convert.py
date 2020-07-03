@@ -19,7 +19,8 @@ def conversion():
     tree = etree.ElementTree(jmeterTestPlan)
     now = time.strftime("%Y-%m-%d_%H-%M-%S")
     try:
-        os.mkdir(ST.report_path)
+        if not os.path.exists(ST.report_path):
+            os.mkdir(ST.report_path)
         tree.write('{}/jmeter-'.format(ST.report_path) + now + '.jmx', pretty_print=True, xml_declaration=True, encoding='utf-8')
         print('swagger convert jmx is success!')
     except FileNotFoundError as e:
