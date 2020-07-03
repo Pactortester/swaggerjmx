@@ -1,0 +1,13 @@
+README.md
+setup.py
+swaggerjmx/__init__.py
+swaggerjmx/convert.py
+swaggerjmx/get_swagger.py
+swaggerjmx/settings.py
+swaggerjmx/to_jmx.py
+swaggerjmx/version.py
+swaggerjmx.egg-info/PKG-INFO
+swaggerjmx.egg-info/SOURCES.txt
+swaggerjmx.egg-info/dependency_links.txt
+swaggerjmx.egg-info/requires.txt
+swaggerjmx.egg-info/top_level.txt

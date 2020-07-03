@@ -1,0 +1,88 @@
+Metadata-Version: 2.1
+Name: swaggerjmx
+Version: 1.0.1
+Summary: swagger convert jmx
+Home-page: https://github.com/Pactortester/swagger_jmx
+Author: lijiawei
+Author-email: 1456470136@qq.com
+License: MIT Licence
+Description: # swagger_jmx
+        
+        
+        [![Build Status](https://travis-ci.com/Pactortester/swaggerjmx.svg?branch=master)](https://travis-ci.com/Pactortester/swaggerjmx) ![PyPI](https://img.shields.io/pypi/v/swaggerjmx) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/swaggerjmx) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/swaggerjmx) ![GitHub top language](https://img.shields.io/github/languages/top/Pactortester/swaggerjmx) ![GitHub stars](https://img.shields.io/github/stars/Pactortester/swaggerjmx?style=social) ![https://blog.csdn.net/flower_drop](https://img.shields.io/badge/csdn-%40flower__drop-orange)
+        
+        
+        ## Logo
+        
+        ![logo](https://github.com/Pactortester/swaggerjmx/blob/master/images/swaggerjmx.png)
+        
+        
+        ## 安装
+        
+        
+        pip install swaggerjmx
+        
+        
+        ##  仓库地址：
+        
+        
+        - github：https://github.com/Pactortester/swaggerjmx.git
+        - pypi：https://pypi.org/project/swaggerjmx/#history
+        
+        
+        ## 社区地址
+        
+        
+        - testerhome：https://testerhome.com/opensource_projects/swaggerjmx
+        
+        
+        ## 适用场景
+        
+        
+        1. 由于接口文档编写耗时，而且需要持续维护，耗时耗力，使用此工具可以一键自动生成接口文档.
+        2. swagger-ui接口文档一键生成jmx文件供jmeter使用.
+        
+        
+        ## 功能
+        
+        
+        1. 将swagger-ui文档转换为jmx文件
+        
+        
+        ## Demo
+        
+        
+        ```python
+        # -*- coding: utf-8 -*-
+        
+        from swaggerjmx.convert import conversion
+        from swaggerjmx.settings import Settings as ST
+        #  swagger_url
+        ST.swagger_url = 'http://ip:port/v2/api-docs'
+        #  report_path
+        ST.report_path = 'jmx'
+        # 开始转换
+        conversion()
+        
+        ```
+        
+Keywords: pip,swagger,jmx,swagger convert jmx
+Platform: any
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console :: Curses
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Topic :: Security
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: Proxy Servers
+Classifier: Topic :: System :: Networking :: Monitoring
+Classifier: Topic :: Software Development :: Testing
+Classifier: Typing :: Typed
+Description-Content-Type: text/markdown
