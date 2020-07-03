@@ -7,7 +7,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setup(
     name="swaggerjmx",
-    version="1.0.0",
+    version="1.0.1",
     keywords=["pip", "swagger", "jmx", "swagger convert jmx"],
     description="swagger convert jmx",
     long_description=long_description,

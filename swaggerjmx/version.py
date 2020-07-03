@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 import os
 import sys
@@ -10,7 +10,7 @@ def get_swagger_jmx_version():
     pip_pkg_dir = os.path.abspath(pip_pkg_dir)
 
     return (
-        'garbevents {} from {} (python {})'.format(
+        'swaggerjmx {} from {} (python {})'.format(
             __version__, pip_pkg_dir, sys.version[:3],
         )
     )
