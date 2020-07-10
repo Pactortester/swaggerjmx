@@ -1,8 +1,8 @@
 Metadata-Version: 2.1
 Name: swaggerjmx
-Version: 1.0.1
+Version: 1.0.2
 Summary: swagger convert jmx
-Home-page: https://github.com/Pactortester/swagger_jmx
+Home-page: https://github.com/Pactortester/swaggerjmx
 Author: lijiawei
 Author-email: 1456470136@qq.com
 License: MIT Licence

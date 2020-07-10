@@ -7,14 +7,14 @@ with open('README.md', encoding='utf-8') as f:
 
 setup(
     name="swaggerjmx",
-    version="1.0.1",
+    version="1.0.2",
     keywords=["pip", "swagger", "jmx", "swagger convert jmx"],
     description="swagger convert jmx",
     long_description=long_description,
     long_description_content_type='text/markdown',
     license="MIT Licence",
 
-    url="https://github.com/Pactortester/swagger_jmx",
+    url="https://github.com/Pactortester/swaggerjmx",
     author="lijiawei",
     author_email="1456470136@qq.com",
     classifiers=[
