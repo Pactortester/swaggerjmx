@@ -1,7 +1,7 @@
 # swagger_jmx
 
 
-[![Build Status](https://travis-ci.com/Pactortester/swaggerjmx.svg?branch=master)](https://travis-ci.com/Pactortester/swaggerjmx) ![PyPI](https://img.shields.io/pypi/v/swaggerjmx) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/swaggerjmx) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/swaggerjmx) ![GitHub top language](https://img.shields.io/github/languages/top/Pactortester/swaggerjmx) ![GitHub stars](https://img.shields.io/github/stars/Pactortester/swaggerjmx?style=social) ![https://blog.csdn.net/flower_drop](https://img.shields.io/badge/csdn-%40flower__drop-orange)
+[![Build Status](https://travis-ci.com/Pactortester/swaggerjmx.svg?branch=master)](https://travis-ci.com/Pactortester/swaggerjmx) ![PyPI](https://img.shields.io/pypi/v/swaggerjmx) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/swaggerjmx) ![GitHub top language](https://img.shields.io/github/languages/top/Pactortester/swaggerjmx) ![PyPI - Downloads](https://img.shields.io/pypi/dm/swaggerjmx?style=plastic) ![GitHub stars](https://img.shields.io/github/stars/Pactortester/swaggerjmx?style=social) ![https://blog.csdn.net/flower_drop](https://img.shields.io/badge/csdn-%40flower__drop-orange)
 
 
 ## Logo
