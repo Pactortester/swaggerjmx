@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+import os
 
 from swaggerjmx.convert import conversion
 from swaggerjmx.settings import Settings as ST
 
-# ST.swagger_url = 'http://10.0.0.0:6003/v2/api-docs'
-ST.swagger_url_json_path = './test.json'
+path = os.path.join(os.getcwd(), 'test.json')
+ST.swagger_url_json_path = path
 ST.report_path = 'jmx'
 conversion()
