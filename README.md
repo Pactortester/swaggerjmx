@@ -75,7 +75,6 @@ ST.report_path = 'jmx'
 conversion()
 
 ```
-
 ## 
 
 以上便是 swaggerjmx 的基本用法介绍。
