@@ -41,8 +41,8 @@ pip install swaggerjmx
 1. 将swagger-ui文档转换为jmx文件
 
 
-## Demo
-
+## Demo_1
+- 可以直接访问 swagger_url (http://ip:port/v2/api-doc) 不需要登录的，使用Demo_1方式转换
 
 ```python
 # -*- coding: utf-8 -*-
@@ -51,6 +51,23 @@ from swaggerjmx.convert import conversion
 from swaggerjmx.settings import Settings as ST
 #  swagger_url
 ST.swagger_url = 'http://ip:port/v2/api-docs'
+#  report_path
+ST.report_path = 'jmx'
+# 开始转换
+conversion()
+
+```
+
+## Demo_2
+- 需要登录才能访问的，可以复制swagger_url页面上的json信息，保存json文件，使用Demo_2方式转换
+
+```python
+# -*- coding: utf-8 -*-
+
+from swaggerjmx.convert import conversion
+from swaggerjmx.settings import Settings as ST
+#  swagger_url_json_path 
+ST.swagger_url_json_path = 'test.json'
 #  report_path
 ST.report_path = 'jmx'
 # 开始转换

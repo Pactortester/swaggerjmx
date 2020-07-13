@@ -1,0 +1,3362 @@
+{
+ "swagger": "2.0",
+ "info": {
+ "description": "简单优雅的restful⻛格",
+ "version": "1.0",
+ "title": "舆情监控系统api⽂档",
+ "termsOfService": "http://127.0.0.1:8080"
+ },
+ "host": "10.0.0.25:8080",
+ "basePath": "/",
+ "tags": [
+ {
+ "name": "account-controller",
+ "description": "Account Controller"
+ },
+ {
+ "name": "company-controller",
+ "description": "Company Controller"
+ },
+ {
+ "name": "essay-controller",
+ "description": "Essay Controller"
+ },
+ {
+ "name": "media-controller",
+ "description": "Media Controller"
+ },
+ {
+ "name": "scheme-controller",
+ "description": "Scheme Controller"
+ },
+ {
+ "name": "scheme-warning-controller",
+ "description": "Scheme Warning Controller"
+ },
+ {
+ "name": "search-controller",
+ "description": "Search Controller"
+ },
+ {
+ "name": "track-task-controller",
+ "description": "Track Task Controller"
+ },
+ {
+ "name": "user-controller",
+ "description": "User Controller"
+ },
+ {
+ "name": "wx-controller",
+ "description": "Wx Controller"
+ }
+ ],
+ "paths": {
+ "/accounts/{id}": {
+ "put": {
+ "tags": [
+ "account-controller"
+ ],
+ "summary": "修改账户信息",
+ "operationId": "updateUsingPUT",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "in": "body",
+ "name": "Update",
+ "description": "data",
+ "required": true,
+ "schema": {
+ "originalRef": "Update",
+ "$ref": "#/definitions/Update"
+ }
+ },
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-author": "LW",
+ "x-order": "2147483647"
+ }
+ },
+ "/company/{cid}": {
+ "get": {
+ "tags": [
+ "company-controller"
+ ],
+ "summary": "公司详情",
+ "operationId": "detailUsingGET",
+ "produces": [
+ "*/*",
+ "application/json"
+ ],
+ "parameters": [
+ {
+ "name": "cid",
+ "in": "path",
+ "description": "cid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/company/{cid}/business_limit": {
+ "get": {
+ "tags": [
+ "company-controller"
+ ],
+ "summary": "公司业务限制",
+ "operationId": "getBusLimitUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "cid",
+ "in": "path",
+ "description": "cid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/company/{cid}/keywords": {
+ "get": {
+ "tags": [
+ "company-controller"
+ ],
+ "summary": "公司主体词库",
+ "operationId": "getKeywordsUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "cid",
+ "in": "path",
+ "description": "cid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/company/{cid}/schemes": {
+ "get": {
+ "tags": [
+ "company-controller"
+ ],
+ "summary": "监控项⽬列表",
+ "operationId": "getSchemesUsingGET",
+ "produces": [
+ "*/*",
+ "application/json"
+ ],
+ "parameters": [
+ {
+ "name": "cid",
+ "in": "path",
+ "description": "cid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "page",
+ "in": "query",
+ "description": "page",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "size",
+ "in": "query",
+ "description": "size",
+ "required": false,
+ "type": "integer",
+ "default": 10,
+ "format": "int32"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/company/{cid}/track_tasks": {
+ "get": {
+ "tags": [
+ "company-controller"
+ ],
+ "summary": "追踪任务列表",
+ "operationId": "getTrackTasksUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "cid",
+ "in": "path",
+ "description": "cid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "page",
+ "in": "query",
+ "description": "page",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "size",
+ "in": "query",
+ "description": "size",
+ "required": false,
+ "type": "integer",
+ "default": 10,
+ "format": "int32"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/company/{cid}/users": {
+ "get": {
+ "tags": [
+ "company-controller"
+ ],
+ "summary": "公司⽤户列表",
+ "operationId": "companyUsersUsingGET",
+ "produces": [
+ "*/*",
+ "application/json"
+ ],
+ "parameters": [
+ {
+ "name": "cid",
+ "in": "path",
+ "description": "cid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ },
+ "post": {
+ "tags": [
+ "company-controller"
+ ],
+ "summary": "添加公司账号",
+ "operationId": "newUserUsingPOST",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "cid",
+ "in": "path",
+ "description": "cid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "in": "body",
+ "name": "data",
+ "description": "data",
+ "required": true,
+ "schema": {
+ "originalRef": "UserInfo",
+ "$ref": "#/definitions/UserInfo"
+ }
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/company/{cid}/users/{uid}": {
+ "delete": {
+ "tags": [
+ "company-controller"
+ ],
+ "summary": "删除公司账号",
+ "operationId": "delUserUsingDELETE",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "cid",
+ "in": "path",
+ "description": "cid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "uid",
+ "in": "path",
+ "description": "uid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "204": {
+ "description": "No Content"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/essays/{id}": {
+ "get": {
+ "tags": [
+ "essay-controller"
+ ],
+ "summary": "⽂章详情",
+ "operationId": "getDetailUsingGET",
+ "produces": [
+ "*/*",
+ "application/json"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/essays/{id}/version": {
+ "get": {
+ "tags": [
+ "essay-controller"
+ ],
+ "summary": "⽂章相似⽂章列表",
+ "operationId": "getVersionsUsingGET",
+ "produces": [
+ "*/*",
+ "application/json"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "order",
+ "in": "query",
+ "description": "order",
+ "required": false,
+ "type": "string",
+ "default": "DESC"
+ },
+ {
+ "name": "orderBy",
+ "in": "query",
+ "description": "orderBy",
+ "required": false,
+ "type": "string",
+ "default": "pubdate"
+ },
+ {
+ "name": "page",
+ "in": "query",
+ "description": "page",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "size",
+ "in": "query",
+ "description": "size",
+ "required": false,
+ "type": "integer",
+ "default": 10,
+ "format": "int32"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/login": {
+ "post": {
+ "tags": [
+ "account-controller"
+ ],
+ "summary": "⽤户登录",
+ "operationId": "loginUsingPOST",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "in": "body",
+ "name": "account",
+ "description": "account",
+ "required": true,
+ "schema": {
+ "originalRef": "Account",
+ "$ref": "#/definitions/Account"
+ }
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/media/rcmd": {
+ "get": {
+ "tags": [
+ "media-controller"
+ ],
+ "summary": "推荐媒体",
+ "operationId": "getRcmdMediaUsingGET",
+ "produces": [
+ "*/*",
+ "application/json"
+ ],
+ "parameters": [
+ {
+ "name": "page",
+ "in": "query",
+ "description": "page",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "size",
+ "in": "query",
+ "description": "size",
+ "required": false,
+ "type": "integer",
+ "default": 10,
+ "format": "int32"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/refresh_token": {
+ "get": {
+ "tags": [
+ "account-controller"
+ ],
+ "summary": "刷新access_token(采集使⽤)",
+ "operationId": "freshTokenUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "token",
+ "in": "query",
+ "description": "token",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/scheme_warning/{id}": {
+ "get": {
+ "tags": [
+ "scheme-warning-controller"
+ ],
+ "summary": "监控预警详情",
+ "operationId": "schemeWaringUsingGET",
+ "produces": [
+ "*/*",
+ "application/json"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ },
+ "put": {
+ "tags": [
+ "scheme-warning-controller"
+ ],
+ "summary": "编辑监控预警",
+ "operationId": "newSchemeWarningUsingPUT",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "in": "body",
+ "name": "schemeWarning",
+ "description": "schemeWarning",
+ "required": true,
+ "schema": {
+ "originalRef": "SchemeWarning",
+ "$ref": "#/definitions/SchemeWarning"
+ }
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/scheme_warning/{id}/essays": {
+ "get": {
+ "tags": [
+ "scheme-warning-controller"
+ ],
+ "summary": "监控预警⽂章列表",
+ "operationId": "getEssaysUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "ed",
+ "in": "query",
+ "description": "ed",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ },
+ {
+ "name": "emotion",
+ "in": "query",
+ "description": "emotion",
+ "required": false,
+ "type": "string",
+ "enum": [
+ "POSITIVE",
+ "NEUTRAL",
+ "NEGATIVE"
+ ]
+ },
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "keywordRange",
+ "in": "query",
+ "description": "keywordRange",
+ "required": false,
+ "type": "string",
+ "enum": [
+ "TITLE",
+ "CONTENT"
+ ]
+ },
+ {
+ "name": "matchFeature",
+ "in": "query",
+ "description": "matchFeature",
+ "required": false,
+ "type": "boolean"
+ },
+ {
+ "name": "page",
+ "in": "query",
+ "description": "page",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "platform",
+ "in": "query",
+ "description": "platform",
+ "required": false,
+ "type": "array",
+ "items": {
+ "type": "string",
+ "enum": [
+ "WX",
+ "LT",
+ "WB",
+ "WM",
+ "APP",
+ "NM"
+ ]
+ },
+ "collectionFormat": "multi",
+ "enum": [
+ "WX",
+ "LT",
+ "WB",
+ "WM",
+ "APP",
+ "NM"
+ ]
+ },
+ {
+ "name": "q",
+ "in": "query",
+ "description": "q",
+ "required": false,
+ "type": "string"
+ },
+ {
+ "name": "showCount",
+ "in": "query",
+ "description": "showCount",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "size",
+ "in": "query",
+ "description": "size",
+ "required": false,
+ "type": "integer",
+ "default": 10,
+ "format": "int32"
+ },
+ {
+ "name": "st",
+ "in": "query",
+ "description": "st",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ },
+ {
+ "name": "updateTime",
+ "in": "query",
+ "description": "updateTime",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/scheme_warning/{id}/warningmsg": {
+ "get": {
+ "tags": [
+ "scheme-warning-controller"
+ ],
+ "summary": "⽤户监控预警消息接收详情",
+ "operationId": "msgSettingUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ },
+ "post": {
+ "tags": [
+ "scheme-warning-controller"
+ ],
+ "summary": "监控预警接收消息设置",
+ "operationId": "warningMsgUsingPOST",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "in": "body",
+ "name": "data",
+ "description": "data",
+ "required": true,
+ "schema": {
+ "type": "object"
+ }
+ },
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ },
+ "put": {
+ "tags": [
+ "scheme-warning-controller"
+ ],
+ "summary": "编辑监控预警消息接收",
+ "operationId": "updateMsgUsingPUT",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "in": "body",
+ "name": "data",
+ "description": "data",
+ "required": true,
+ "schema": {
+ "type": "object"
+ }
+ },
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes": {
+ "post": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "创建新的监控项⽬",
+ "operationId": "createUsingPOST",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "in": "body",
+ "name": "scheme",
+ "description": "scheme",
+ "required": true,
+ "schema": {
+ "originalRef": "Scheme",
+ "$ref": "#/definitions/Scheme"
+ }
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/keywords": {
+ "get": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "所有监控项⽬主体词列表（采集使⽤）",
+ "operationId": "getAllNrsAndKeywordsUsingGET",
+ "produces": [
+ "*/*",
+ "application/json"
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}": {
+ "get": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "监控项⽬详情",
+ "operationId": "detailUsingGET_1",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ },
+ "put": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "编辑监控项⽬",
+ "operationId": "updateUsingPUT_1",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "in": "body",
+ "name": "data",
+ "description": "data",
+ "required": true,
+ "schema": {
+ "originalRef": "Scheme",
+ "$ref": "#/definitions/Scheme"
+ }
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ },
+ "delete": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "删除监控项⽬",
+ "operationId": "deleteUsingDELETE",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "204": {
+ "description": "No Content"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}/cloud_words": {
+ "get": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "监控项⽬词云",
+ "operationId": "getEssaysCloudWordsUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "ed",
+ "in": "query",
+ "description": "ed",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "size",
+ "in": "query",
+ "description": "size",
+ "required": false,
+ "type": "integer",
+ "default": 100,
+ "format": "int32"
+ },
+ {
+ "name": "st",
+ "in": "query",
+ "description": "st",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}/custom_reports": {
+ "post": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "⽣成⾃定义报告",
+ "operationId": "createCustomReportsUsingPOST",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "ed",
+ "in": "query",
+ "description": "ed",
+ "required": true,
+ "type": "integer",
+ "format": "int64"
+ },
+ {
+ "name": "reportTemplateType",
+ "in": "query",
+ "description": "reportTemplateType",
+ "required": true,
+ "type": "string",
+ "enum": [
+ "WORD",
+ "EXCEL"
+ ]
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "st",
+ "in": "query",
+ "description": "st",
+ "required": true,
+ "type": "integer",
+ "format": "int64"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}/essays": {
+ "get": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "监控项⽬⽂章列表",
+ "operationId": "essaysUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "ed",
+ "in": "query",
+ "description": "ed",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ },
+ {
+ "name": "emotion",
+ "in": "query",
+ "description": "emotion",
+ "required": false,
+ "type": "string",
+ "enum": [
+ "POSITIVE",
+ "NEUTRAL",
+ "NEGATIVE"
+ ]
+ },
+ {
+ "name": "keywordRange",
+ "in": "query",
+ "description": "keywordRange",
+ "required": false,
+ "type": "string",
+ "enum": [
+ "TITLE",
+ "CONTENT"
+ ]
+ },
+ {
+ "name": "matchFeature",
+ "in": "query",
+ "description": "matchFeature",
+ "required": false,
+ "type": "boolean"
+ },
+ {
+ "name": "page",
+ "in": "query",
+ "description": "page",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "platform",
+ "in": "query",
+ "description": "platform",
+ "required": false,
+ "type": "array",
+ "items": {
+ "type": "string",
+ "enum": [
+ "WX",
+ "LT",
+ "WB",
+ "WM",
+ "APP",
+ "NM"
+ ]
+ },
+ "collectionFormat": "multi",
+ "enum": [
+ "WX",
+ "LT",
+ "WB",
+ "WM",
+ "APP",
+ "NM"
+ ]
+ },
+ {
+ "name": "q",
+ "in": "query",
+ "description": "q",
+ "required": false,
+ "type": "string"
+ },
+ {
+ "name": "showCount",
+ "in": "query",
+ "description": "showCount",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "size",
+ "in": "query",
+ "description": "size",
+ "required": false,
+ "type": "integer",
+ "default": 10,
+ "format": "int32"
+ },
+ {
+ "name": "st",
+ "in": "query",
+ "description": "st",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ },
+ {
+ "name": "updateTime",
+ "in": "query",
+ "description": "updateTime",
+ "required": true,
+ "type": "integer",
+ "format": "int64"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}/essays/count": {
+ "get": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "监控项⽬统计（⽂章，媒体，最热⽂章）",
+ "operationId": "getEssayCountsUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "ed",
+ "in": "query",
+ "description": "ed",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "st",
+ "in": "query",
+ "description": "st",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}/essays/platforms": {
+ "get": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "监控项⽬统计（平台来源）",
+ "operationId": "getEssayPlatformsUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "ed",
+ "in": "query",
+ "description": "ed",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "st",
+ "in": "query",
+ "description": "st",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}/essays/text_emotion": {
+ "get": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "监控项⽬统计（⽂本情感统计）",
+ "operationId": "getTextEmotionsUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "ed",
+ "in": "query",
+ "description": "ed",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "st",
+ "in": "query",
+ "description": "st",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}/hot_trend": {
+ "get": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "监控项⽬统计（热度趋势）",
+ "operationId": "getTextEmotionTrendUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "ed",
+ "in": "query",
+ "description": "ed",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "st",
+ "in": "query",
+ "description": "st",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}/report_records": {
+ "get": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "项⽬报告列表",
+ "operationId": "getReportRecordUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "page",
+ "in": "query",
+ "description": "page",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "reportType",
+ "in": "query",
+ "description": "reportType",
+ "required": true,
+ "type": "string",
+ "enum": [
+ "DAILY",
+ "WEEKLY",
+ "MONTHLY",
+ "CUSTOM"
+ ]
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "size",
+ "in": "query",
+ "description": "size",
+ "required": false,
+ "type": "integer",
+ "default": 10,
+ "format": "int32"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}/report_records/{rid}/read": {
+ "put": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "修改报告已读状态",
+ "operationId": "createCustomReportsUsingPUT",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "rid",
+ "in": "path",
+ "description": "rid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}/report_setting": {
+ "get": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "项⽬报告设置详情",
+ "operationId": "getReportSettingUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "reportType",
+ "in": "query",
+ "description": "reportType",
+ "required": true,
+ "type": "string",
+ "enum": [
+ "DAILY",
+ "WEEKLY",
+ "MONTHLY",
+ "CUSTOM"
+ ]
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ },
+ "put": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "更新项⽬报告设置",
+ "operationId": "getReportSettingUsingPUT",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "in": "body",
+ "name": "reportSetting",
+ "description": "reportSetting",
+ "required": true,
+ "schema": {
+ "originalRef": "ReportSetting",
+ "$ref": "#/definitions/ReportSetting"
+ }
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/schemes/{sid}/text_emotion_trend": {
+ "get": {
+ "tags": [
+ "scheme-controller"
+ ],
+ "summary": "监控项⽬统计（情感趋势）",
+ "operationId": "getTextEmotionTrendUsingGET_1",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "ed",
+ "in": "query",
+ "description": "ed",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ },
+ {
+ "name": "emotion",
+ "in": "query",
+ "description": "emotion",
+ "required": false,
+ "type": "string",
+ "enum": [
+ "POSITIVE",
+ "NEUTRAL",
+ "NEGATIVE"
+ ]
+ },
+ {
+ "name": "sid",
+ "in": "path",
+ "description": "sid",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "st",
+ "in": "query",
+ "description": "st",
+ "required": false,
+ "type": "integer",
+ "format": "int64"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/search/media": {
+ "get": {
+ "tags": [
+ "search-controller"
+ ],
+ "summary": "搜索媒体",
+ "operationId": "searchMediaUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "page",
+ "in": "query",
+ "description": "page",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "q",
+ "in": "query",
+ "description": "q",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "size",
+ "in": "query",
+ "description": "size",
+ "required": false,
+ "type": "integer",
+ "default": 10,
+ "format": "int32"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/sms": {
+ "post": {
+ "tags": [
+ "user-controller"
+ ],
+ "summary": "sendSms",
+ "operationId": "sendSmsUsingPOST",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "mobile",
+ "in": "query",
+ "description": "mobile",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/track_tasks": {
+ "post": {
+ "tags": [
+ "track-task-controller"
+ ],
+ "summary": "新建追踪任务",
+ "operationId": "createTrackTaskUsingPOST",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "targetId",
+ "in": "query",
+ "description": "targetId",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/track_tasks/{id}": {
+ "delete": {
+ "tags": [
+ "track-task-controller"
+ ],
+ "summary": "取消追踪任务",
+ "operationId": "removeTrackTaskUsingDELETE",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "204": {
+ "description": "No Content"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/track_tasks/{id}/count": {
+ "get": {
+ "tags": [
+ "track-task-controller"
+ ],
+ "summary": "trackEssayCount",
+ "operationId": "trackEssayCountUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/track_tasks/{id}/first_pub_essay": {
+ "get": {
+ "tags": [
+ "track-task-controller"
+ ],
+ "summary": "追踪任务⾸发⽂章",
+ "operationId": "firstPubEssayUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/track_tasks/{id}/spread_index": {
+ "get": {
+ "tags": [
+ "track-task-controller"
+ ],
+ "summary": "trackEssaySpreadIndex",
+ "operationId": "trackEssaySpreadIndexUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/track_tasks/{id}/top": {
+ "post": {
+ "tags": [
+ "track-task-controller"
+ ],
+ "summary": "置顶追踪任务",
+ "operationId": "toppingTrackTaskUsingPOST",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ },
+ "delete": {
+ "tags": [
+ "track-task-controller"
+ ],
+ "summary": "取消置顶追踪任务",
+ "operationId": "cancelToppedTrackTaskUsingDELETE",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "204": {
+ "description": "No Content"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/track_tasks/{id}/trace_tree": {
+ "get": {
+ "tags": [
+ "track-task-controller"
+ ],
+ "summary": "trackEssaySpreadPath",
+ "operationId": "trackEssaySpreadPathUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/track_tasks/{id}/tracing": {
+ "get": {
+ "tags": [
+ "track-task-controller"
+ ],
+ "summary": "⽂章传播路径",
+ "operationId": "trackEssaysUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "page",
+ "in": "query",
+ "description": "page",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "size",
+ "in": "query",
+ "description": "size",
+ "required": false,
+ "type": "integer",
+ "default": 10,
+ "format": "int32"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/track_tasks/{id}/trackers": {
+ "get": {
+ "tags": [
+ "track-task-controller"
+ ],
+ "summary": "追踪单个任务的⽤户列表",
+ "operationId": "getTrackersUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "id",
+ "in": "path",
+ "description": "id",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/upload": {
+ "post": {
+ "tags": [
+ "user-controller"
+ ],
+ "summary": "upload",
+ "operationId": "uploadUsingPOST",
+ "consumes": [
+ "multipart/form-data"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "file",
+ "in": "formData",
+ "description": "file",
+ "required": true,
+ "type": "file"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/users/{uid}": {
+ "get": {
+ "tags": [
+ "user-controller"
+ ],
+ "summary": "userDetail",
+ "operationId": "userDetailUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "uid",
+ "in": "path",
+ "description": "uid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ },
+ "put": {
+ "tags": [
+ "user-controller"
+ ],
+ "summary": "updateUser",
+ "operationId": "updateUserUsingPUT",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "in": "body",
+ "name": "data",
+ "description": "data",
+ "required": true,
+ "schema": {
+ "originalRef": "User",
+ "$ref": "#/definitions/User"
+ }
+ },
+ {
+ "name": "uid",
+ "in": "path",
+ "description": "uid",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/users/{uid}/track_tasks": {
+ "get": {
+ "tags": [
+ "user-controller"
+ ],
+ "summary": "getTrackTasks",
+ "operationId": "getTrackTasksUsingGET_1",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "page",
+ "in": "query",
+ "description": "page",
+ "required": false,
+ "type": "integer",
+ "default": 1,
+ "format": "int32"
+ },
+ {
+ "name": "size",
+ "in": "query",
+ "description": "size",
+ "required": false,
+ "type": "integer",
+ "default": 10,
+ "format": "int32"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/wx/ORCode": {
+ "get": {
+ "tags": [
+ "wx-controller"
+ ],
+ "summary": "getORCode",
+ "operationId": "getORCodeUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/wx/info": {
+ "get": {
+ "tags": [
+ "wx-controller"
+ ],
+ "summary": "getWxUserInfo",
+ "operationId": "getWxUserInfoUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "originalRef": "RestResult",
+ "$ref": "#/definitions/RestResult"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ },
+ "/wx/server": {
+ "get": {
+ "tags": [
+ "wx-controller"
+ ],
+ "summary": "serviceVerify",
+ "operationId": "serviceVerifyUsingGET",
+ "produces": [
+ "*/*"
+ ],
+ "parameters": [
+ {
+ "name": "echostr",
+ "in": "query",
+ "description": "echostr",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "nonce",
+ "in": "query",
+ "description": "nonce",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "signature",
+ "in": "query",
+ "description": "signature",
+ "required": true,
+ "type": "string"
+ },
+ {
+ "name": "timestamp",
+ "in": "query",
+ "description": "timestamp",
+ "required": true,
+ "type": "string"
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "type": "object"
+ }
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ },
+ "post": {
+ "tags": [
+ "wx-controller"
+ ],
+ "summary": "service",
+ "operationId": "serviceUsingPOST",
+ "consumes": [
+ "application/json"
+ ],
+ "produces": [
+ "application/xml;charset=UTF-8"
+ ],
+ "parameters": [
+ {
+ "in": "body",
+ "name": "body",
+ "description": "body",
+ "required": true,
+ "schema": {
+ "type": "string"
+ }
+ }
+ ],
+ "responses": {
+ "200": {
+ "description": "OK",
+ "schema": {
+ "type": "object"
+ }
+ },
+ "201": {
+ "description": "Created"
+ },
+ "401": {
+ "description": "Unauthorized"
+ },
+ "403": {
+ "description": "Forbidden"
+ },
+ "404": {
+ "description": "Not Found"
+ }
+ },
+ "deprecated": false,
+ "x-order": "2147483647"
+ }
+ }
+ },
+ "definitions": {
+ "Account": {
+ "type": "object",
+ "required": [
+ "name",
+ "password"
+ ],
+ "properties": {
+ "name": {
+ "type": "string",
+ "description": "⽤户名"
+ },
+ "password": {
+ "type": "string",
+ "description": "登录密码"
+ }
+ },
+ "title": "Account"
+ },
+ "Company": {
+ "type": "object",
+ "properties": {
+ "address": {
+ "type": "string"
+ },
+ "id": {
+ "type": "string"
+ },
+ "name": {
+ "type": "string"
+ }
+ },
+ "title": "Company"
+ },
+ "ReportSetting": {
+ "type": "object",
+ "properties": {
+ "companyId": {
+ "type": "string"
+ },
+ "createTime": {
+ "type": "string",
+ "format": "date-time"
+ },
+ "hour": {
+ "type": "integer",
+ "format": "int32",
+ "minimum": 0,
+ "maximum": 23,
+ "exclusiveMinimum": false,
+ "exclusiveMaximum": false
+ },
+ "id": {
+ "type": "string"
+ },
+ "monthDay": {
+ "type": "integer",
+ "format": "int32",
+ "minimum": 1,
+ "maximum": 31,
+ "exclusiveMinimum": false,
+ "exclusiveMaximum": false
+ },
+ "reportTemplateType": {
+ "type": "string",
+ "enum": [
+ "WORD",
+ "EXCEL"
+ ]
+ },
+ "reportType": {
+ "type": "string",
+ "enum": [
+ "DAILY",
+ "WEEKLY",
+ "MONTHLY",
+ "CUSTOM"
+ ]
+ },
+ "schemeId": {
+ "type": "string"
+ },
+ "status": {
+ "type": "boolean"
+ },
+ "updateTime": {
+ "type": "string",
+ "format": "date-time"
+ },
+ "weekDay": {
+ "type": "integer",
+ "format": "int32",
+ "minimum": 1,
+ "maximum": 7,
+ "exclusiveMinimum": false,
+ "exclusiveMaximum": false
+ }
+ },
+ "title": "ReportSetting"
+ },
+ "RestResult": {
+ "type": "object",
+ "properties": {
+ "code": {
+ "type": "integer",
+ "format": "int32"
+ },
+ "data": {
+ "type": "object"
+ },
+ "msg": {
+ "type": "string"
+ }
+ },
+ "title": "RestResult"
+ },
+ "Scheme": {
+ "type": "object",
+ "required": [
+ "keywords",
+ "title"
+ ],
+ "properties": {
+ "eventWords": {
+ "type": "array",
+ "description": "监控项⽬事件词",
+ "items": {
+ "type": "string"
+ }
+ },
+ "excWords": {
+ "type": "array",
+ "description": "监控项⽬排除词",
+ "items": {
+ "type": "string"
+ }
+ },
+ "keywords": {
+ "type": "array",
+ "description": "监控项⽬主体词",
+ "items": {
+ "type": "string"
+ }
+ },
+ "title": {
+ "type": "string",
+ "description": "监控项⽬名称"
+ }
+ },
+ "title": "Scheme"
+ },
+ "SchemeWarning": {
+ "type": "object",
+ "required": [
+ "status"
+ ],
+ "properties": {
+ "forwardCount": {
+ "type": "integer",
+ "format": "int32"
+ },
+ "mediaIdList": {
+ "type": "array",
+ "items": {
+ "type": "string"
+ }
+ },
+ "status": {
+ "type": "boolean"
+ },
+ "textEmotion": {
+ "type": "array",
+ "items": {
+ "type": "string",
+ "enum": [
+ "POSITIVE",
+ "NEUTRAL",
+ "NEGATIVE"
+ ]
+ }
+ },
+ "viewCount": {
+ "type": "integer",
+ "format": "int32"
+ },
+ "warningForwardStatus": {
+ "type": "boolean"
+ },
+ "warningMediaStatus": {
+ "type": "boolean"
+ },
+ "warningViewStatus": {
+ "type": "boolean"
+ }
+ },
+ "title": "SchemeWarning"
+ },
+ "User": {
+ "type": "object",
+ "required": [
+ "nick"
+ ],
+ "properties": {
+ "avatar": {
+ "type": "string"
+ },
+ "email": {
+ "type": "string"
+ },
+ "mobile": {
+ "type": "string"
+ },
+ "nick": {
+ "type": "string"
+ },
+ "role": {
+ "type": "integer",
+ "format": "int32"
+ }
+ },
+ "title": "User"
+ },
+ "UserInfo": {
+ "type": "object",
+ "properties": {
+ "account": {
+ "originalRef": "Account",
+ "$ref": "#/definitions/Account"
+ },
+ "company": {
+ "originalRef": "Company",
+ "$ref": "#/definitions/Company"
+ },
+ "user": {
+ "originalRef": "User",
+ "$ref": "#/definitions/User"
+ }
+ },
+ "title": "UserInfo"
+ }
+ }
+}

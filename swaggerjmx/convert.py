@@ -9,7 +9,7 @@ from .settings import Settings as ST
 
 def conversion():
 
-    result = get_test_plan(ST.swagger_url)
+    result = get_test_plan(swagger_url=ST.swagger_url, swagger_url_json_path=ST.swagger_url_json_path)
     jmeterTestPlan = etree.Element("jmeterTestPlan")
     hashTree = jmeter_test_plan(jmeterTestPlan)
     testPlan = test_plan(hashTree)

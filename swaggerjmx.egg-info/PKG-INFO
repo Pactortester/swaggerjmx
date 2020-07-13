@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: swaggerjmx
-Version: 1.0.2
+Version: 1.0.3
 Summary: swagger convert jmx
 Home-page: https://github.com/Pactortester/swaggerjmx
 Author: lijiawei
@@ -9,7 +9,7 @@ License: MIT Licence
 Description: # swagger_jmx
         
         
-        [![Build Status](https://travis-ci.com/Pactortester/swaggerjmx.svg?branch=master)](https://travis-ci.com/Pactortester/swaggerjmx) ![PyPI](https://img.shields.io/pypi/v/swaggerjmx) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/swaggerjmx) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/swaggerjmx) ![GitHub top language](https://img.shields.io/github/languages/top/Pactortester/swaggerjmx) ![GitHub stars](https://img.shields.io/github/stars/Pactortester/swaggerjmx?style=social) ![https://blog.csdn.net/flower_drop](https://img.shields.io/badge/csdn-%40flower__drop-orange)
+        [![Build Status](https://travis-ci.com/Pactortester/swaggerjmx.svg?branch=master)](https://travis-ci.com/Pactortester/swaggerjmx) ![PyPI](https://img.shields.io/pypi/v/swaggerjmx) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/swaggerjmx) ![GitHub top language](https://img.shields.io/github/languages/top/Pactortester/swaggerjmx) ![PyPI - Downloads](https://img.shields.io/pypi/dm/swaggerjmx?style=plastic) ![GitHub stars](https://img.shields.io/github/stars/Pactortester/swaggerjmx?style=social) ![https://blog.csdn.net/flower_drop](https://img.shields.io/badge/csdn-%40flower__drop-orange)
         
         
         ## Logo
@@ -49,8 +49,8 @@ Description: # swagger_jmx
         1. 将swagger-ui文档转换为jmx文件
         
         
-        ## Demo
-        
+        ## Demo_1
+        - 可以直接访问 swagger_url (http://ip:port/v2/api-doc) 不需要登录的，使用Demo_1方式转换
         
         ```python
         # -*- coding: utf-8 -*-
@@ -66,6 +66,22 @@ Description: # swagger_jmx
         
         ```
         
+        ## Demo_2
+        - 需要登录才能访问的，可以复制swagger_url页面上的json信息，保存json文件，使用Demo_2方式转换
+        
+        ```python
+        # -*- coding: utf-8 -*-
+        
+        from swaggerjmx.convert import conversion
+        from swaggerjmx.settings import Settings as ST
+        #  swagger_url_json_path 
+        ST.swagger_url_json_path = 'test.json'
+        #  report_path
+        ST.report_path = 'jmx'
+        # 开始转换
+        conversion()
+        
+        ```
 Keywords: pip,swagger,jmx,swagger convert jmx
 Platform: any
 Classifier: License :: OSI Approved :: MIT License

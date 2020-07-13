@@ -13,6 +13,9 @@ class Settings(object):
     ST.swagger_url = 'https://www.baidu.com/'
     # 报告生成路径
     ST.report_path = 'jmx'
+    # 可以传入swagger_url展示的json文件路径
+    swagger_url_json_path = None
     """
     report_path = 'jmx'  # 默认在当前路径生成jmx文件夹
     swagger_url = None
+    swagger_url_json_path = None
