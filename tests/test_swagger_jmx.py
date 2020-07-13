@@ -5,6 +5,6 @@ from swaggerjmx.convert import conversion
 from swaggerjmx.settings import Settings as ST
 
 path = os.path.join(os.getcwd(), 'test.json')
-ST.swagger_url_json_path = path
+ST.swagger_url_json_path = '/home/travis/build/Pactortester/swaggerjmx/tests/test.json'
 ST.report_path = 'jmx'
 conversion()
