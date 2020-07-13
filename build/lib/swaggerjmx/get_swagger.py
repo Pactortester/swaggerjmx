@@ -9,11 +9,7 @@ import requests
 import json
 
 
-
-
 def get_test_plan(swagger_url=None, swagger_url_json_path=None):
-
-
     global data
     if swagger_url is None:
         try:
@@ -60,4 +56,3 @@ def get_test_plan(swagger_url=None, swagger_url_json_path=None):
                                  "sampler_comments": sample_value.get("description")})
 
     return thread_groups
-get_test_plan(swagger_url='http://10.231.132.81:6003/v2/api-docs')
