@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2020/6/30 17:05
-# @Author  : 李佳玮
-# @Email   : lijiawei@symbio.com
-# @File    : get_swagger.py
-# @Software: PyCharm
 
 import requests
 import json
@@ -32,7 +27,11 @@ def get_test_plan(swagger_url=None, swagger_url_json_path=None):
     definitions = data.get("definitions")
     for thread_group in thread_groups:
         thread_group['host'] = str(host).split(":")[0]
-        thread_group["port"] = str(host).split(":")[1]
+        try:
+            thread_group["port"] = str(host).split(":")[1]
+        except IndexError:
+            # 当url是域名时 端口传空
+            thread_group["port"] = ''
         thread_group['sample'] = []
         for path_key, path_value in path.items():
             if isinstance(path_value, dict):
