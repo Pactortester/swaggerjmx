@@ -8,7 +8,7 @@ from lxml import etree
 def jmeter_test_plan(root_xml):
     JmeterTestPlan = root_xml
     JmeterTestPlan.set('version', '1.2')
-    JmeterTestPlan.set('properties', '2.3')
+    JmeterTestPlan.set('properties', '5.0')
     JmeterTestPlan.set('jmeter', '5.1.1 r1855137')
     return etree.SubElement(JmeterTestPlan, 'hashTree')
 
@@ -95,7 +95,7 @@ def controller(parent_xml, result):
             HTTPSamplerProxy = etree.SubElement(shashTree, "HTTPSamplerProxy")
             common_api(HTTPSamplerProxy,
                        {"guiclass": "HttpTestSampleGui", "testclass": "HTTPSamplerProxy",
-                        "testname": sample.get('path'),
+                        "testname": str(sample.get('path')).replace('//', '/'),
                         "enabled": "true"})
             if sample.get("params").__len__() < 1:
                 elementProp = etree.SubElement(HTTPSamplerProxy, "elementProp")
@@ -143,17 +143,17 @@ def controller(parent_xml, result):
             # encoding
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
             stringProp.set("name", "HTTPSampler.contentEncoding")
-            stringProp.text = "utf8"
+            stringProp.text = "UTF-8"
 
             # path
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
             stringProp.set("name", "HTTPSampler.path")
-            stringProp.text = sample.get("path")
+            stringProp.text = str(sample.get("path")).replace('//', '/').replace('/{', '/${')
 
             # method
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
             stringProp.set("name", "HTTPSampler.method")
-            stringProp.text = sample.get("method")
+            stringProp.text = sample.get("method").upper()
 
             # follow redirects
             boolProp = etree.SubElement(HTTPSamplerProxy, "boolProp")
