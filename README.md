@@ -75,6 +75,20 @@ ST.report_path = 'jmx'
 conversion()
 
 ```
+## 截图：
+
+1. 传入红框中的swagger-ui 地址
+
+![image](https://user-images.githubusercontent.com/29191106/88256748-a58d3900-ccee-11ea-8960-b16ed18c34c6.png)
+
+2. 生成的jmx文件
+
+![image](https://user-images.githubusercontent.com/29191106/88256097-de2c1300-ccec-11ea-80cb-4a2ed6e8c4e0.png)
+
+3. jmeter中显示
+
+![image](https://user-images.githubusercontent.com/29191106/88256407-d91b9380-cced-11ea-910b-cafaec9ae158.png)
+
 ## 
 
 以上便是 swaggerjmx 的基本用法介绍。
