@@ -9,7 +9,7 @@
 ![logo](https://github.com/Pactortester/swaggerjmx/blob/master/images/swaggerjmx.png)
 
 
-## install
+## Install
 
 
 pip install swaggerjmx
