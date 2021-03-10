@@ -19,3 +19,4 @@ class Settings(object):
     report_path = 'jmx'  # 默认在当前路径生成jmx文件夹
     swagger_url = None
     swagger_url_json_path = None
+    swagger_json = None

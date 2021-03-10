@@ -4,22 +4,28 @@ import requests
 import json
 
 
-def get_test_plan(swagger_url=None, swagger_url_json_path=None):
+def get_test_plan(swagger_url=None, swagger_url_json_path=None, swagger_json=None):
     global data
-    if swagger_url is None:
+
+    if swagger_url is None and swagger_url_json_path is None and swagger_json is None:
+        raise TypeError('You must pass a parameter!')
+    elif swagger_url_json_path is not None and swagger_url is not None and swagger_json is not None:
+        raise TypeError('Only one parameter can be passed!')
+
+    elif swagger_url is not None:
+        response = requests.get(swagger_url)
+        data = json.loads(response.text, strict=False)
+
+    elif swagger_url_json_path is not None:
         try:
             with open(swagger_url_json_path, 'r', encoding='utf-8') as f:
                 data = json.load(f, strict=False)
         except TypeError:
             raise TypeError('You must pass a swagger_url_json_path parameter!')
-    elif swagger_url_json_path is None:
-        response = requests.get(swagger_url)
-        data = json.loads(response.text, strict=False)
-    elif swagger_url is None and swagger_url_json_path is None:
-        raise TypeError('You must pass a parameter!')
-    elif swagger_url_json_path is not None and swagger_url is not None:
-        raise TypeError('Only one parameter can be passed!')
+    elif swagger_json is not None:
+        data = swagger_json
 
+    title = data.get("info")["title"]
     host = data.get("host")
     base_path = data.get("basePath")
     path = data.get("paths")
@@ -54,4 +60,4 @@ def get_test_plan(swagger_url=None, swagger_url_json_path=None):
                                 {"path": base_path + path_key, "method": method, "params": parameters,
                                  "sampler_comments": sample_value.get("description")})
 
-    return thread_groups
+    return thread_groups, title

@@ -4,7 +4,6 @@ import json
 from lxml import etree
 
 
-
 def jmeter_test_plan(root_xml):
     JmeterTestPlan = root_xml
     JmeterTestPlan.set('version', '1.2')
@@ -200,4 +199,3 @@ def controller(parent_xml, result):
 def common_api(obj_xml, datas):
     for key, value in datas.items():
         obj_xml.set(key, value)
-

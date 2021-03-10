@@ -4,8 +4,12 @@ import json
 from lxml import etree
 
 
-
 def jmeter_test_plan(root_xml):
+    """
+
+    :param root_xml:
+    :return:
+    """
     JmeterTestPlan = root_xml
     JmeterTestPlan.set('version', '1.2')
     JmeterTestPlan.set('properties', '5.0')
@@ -13,11 +17,17 @@ def jmeter_test_plan(root_xml):
     return etree.SubElement(JmeterTestPlan, 'hashTree')
 
 
-def test_plan(parent_xml):
+def test_plan(parent_xml, plan_name):
+    """
+
+    :param parent_xml:
+    :param plan_name:
+    :return:
+    """
     testPlan = etree.SubElement(parent_xml, 'TestPlan')
     testPlan.set("guiclass", "TestPlanGui")
     testPlan.set("testclass", "TestPlan")
-    testPlan.set("testname", "Test Plan")
+    testPlan.set("testname", plan_name)
     testPlan.set("enabled", "true")
     stringProp = etree.SubElement(testPlan, "stringProp")
     stringProp.set("name", "TestPlan.comments")
@@ -27,10 +37,10 @@ def test_plan(parent_xml):
     boolProp1.text = "false"
     boolProp2 = etree.SubElement(testPlan, "boolProp")
     boolProp2.set("name", "TestPlan.tearDown_on_shutdown")
-    boolProp2.text = "true"
+    boolProp2.text = "false"
     boolProp3 = etree.SubElement(testPlan, "boolProp")
     boolProp3.set("name", "TestPlan.serialize_threadgroups")
-    boolProp3.text = "false"
+    boolProp3.text = "true"
     elementProp = etree.SubElement(testPlan, "elementProp")
     elementProp.set("name", "TestPlan.user_defined_variables")
     elementProp.set("elementType", "Arguments")
@@ -47,6 +57,11 @@ def test_plan(parent_xml):
 
 
 def thread_group(parent_xml):
+    """
+
+    :param parent_xml:
+    :return:
+    """
     theadGroup = etree.SubElement(parent_xml, "ThreadGroup")
     theadGroup.set("guiclass", "ThreadGroupGui")
     theadGroup.set("testclass", "ThreadGroup")
@@ -68,6 +83,9 @@ def thread_group(parent_xml):
     stringProp = etree.SubElement(theadGroup, "stringProp")
     stringProp.set("name", "ThreadGroup.num_threads")
     stringProp.text = "1"
+    stringProp = etree.SubElement(theadGroup, "stringProp")
+    stringProp.set("name", "ThreadGroup.ramp_time")
+    stringProp.text = "1"
     boolProp = etree.SubElement(theadGroup, "boolProp")
     boolProp.set("name", "ThreadGroup.scheduler")
     boolProp.text = "false"
@@ -80,7 +98,38 @@ def thread_group(parent_xml):
     return etree.SubElement(parent_xml, "hashTree")
 
 
+def arguments(parent_xml):
+    """
+
+    :param parent_xml:
+    :return:
+    """
+    Arguments = etree.SubElement(parent_xml, "ThreadGroup")
+    Arguments.set("guiclass", "ArgumentsPanel")
+    Arguments.set("testclass", "Arguments")
+    Arguments.set("testname", "User defined variables")
+    Arguments.set("enabled", "true")
+    collectionProp = etree.SubElement(Arguments, "collectionProp")
+    collectionProp.set("name", "Arguments.arguments")
+    # elementProp = etree.SubElement(Arguments, "elementProp")
+    # # common_api(elementProp,
+    # #            {"name": "ThreadGroup.main_controller", "elementType": "LoopController", "guiclass": "LoopControlPanel",
+    # #             "testclass": "LoopController", "testname": "Loop Controller", "enabled": "true"})
+    # collectionProp.set("name", "Argument.name")
+    # collectionProp.text = '${baseUrl}'
+    # collectionProp = etree.SubElement(elementProp, "stringProp")
+    # collectionProp.set("name", "Argument.value")
+    # collectionProp.text = '1'
+    return etree.SubElement(parent_xml, "hashTree")
+
+
 def controller(parent_xml, result):
+    """
+
+    :param parent_xml:
+    :param result:
+    :return:
+    """
     for data in result:
         GenericController = etree.SubElement(parent_xml, "GenericController")
         GenericController.set("guiclass", "LogicControllerGui")
@@ -95,7 +144,7 @@ def controller(parent_xml, result):
             HTTPSamplerProxy = etree.SubElement(shashTree, "HTTPSamplerProxy")
             common_api(HTTPSamplerProxy,
                        {"guiclass": "HttpTestSampleGui", "testclass": "HTTPSamplerProxy",
-                        "testname": str(sample.get('path')).replace('//', '/'),
+                        "testname": sample.get('sampler_comments') + '-' + str(sample.get('path')).replace('//', '/'),
                         "enabled": "true"})
             if sample.get("params").__len__() < 1:
                 elementProp = etree.SubElement(HTTPSamplerProxy, "elementProp")
@@ -125,20 +174,23 @@ def controller(parent_xml, result):
                 stringProp = etree.SubElement(elementProp, "stringProp")
                 stringProp.set("name", "Argument.metadata")
                 stringProp.text = "="
-            ###host
+            # host
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
             stringProp.set("name", "HTTPSampler.domain")
-            stringProp.text = data.get("host")
+            # stringProp.text = data.get("host")
+            stringProp.text = data.get("")
 
-            ###port
+            # port
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
             stringProp.set("name", "HTTPSampler.port")
-            stringProp.text = data.get("port")
+            # stringProp.text = data.get("port")
+            stringProp.text = data.get("")
 
-            ##protocol
+            # protocol
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
             stringProp.set("name", "HTTPSampler.protocol")
-            stringProp.text = "http"
+            # stringProp.text = "http"
+            stringProp.text = ""
 
             # encoding
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
@@ -148,7 +200,7 @@ def controller(parent_xml, result):
             # path
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
             stringProp.set("name", "HTTPSampler.path")
-            stringProp.text = str(sample.get("path")).replace('//', '/').replace('/{', '/${')
+            stringProp.text = '${baseUrl}' + str(sample.get("path")).replace('//', '/').replace('/{', '/${')
 
             # method
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
@@ -198,6 +250,11 @@ def controller(parent_xml, result):
 
 
 def common_api(obj_xml, datas):
+    """
+
+    :param obj_xml:
+    :param datas:
+    :return:
+    """
     for key, value in datas.items():
         obj_xml.set(key, value)
-

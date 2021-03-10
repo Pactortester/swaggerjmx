@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
-__version__ = "1.0.6"
+__version__ = "1.0.7"
 
 import os
 import sys
 
 
 def get_swagger_jmx_version():
+    """
+
+    :return:
+    """
     pip_pkg_dir = os.path.join(os.path.dirname(__file__), "..", "..")
     pip_pkg_dir = os.path.abspath(pip_pkg_dir)
 
