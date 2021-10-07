@@ -3,6 +3,8 @@
 import requests
 import json
 
+import urllib3
+
 
 def get_test_plan(swagger_url=None, swagger_url_json_path=None, swagger_json=None):
     """
@@ -20,7 +22,9 @@ def get_test_plan(swagger_url=None, swagger_url_json_path=None, swagger_json=Non
         raise TypeError('Only one parameter can be passed!')
 
     elif swagger_url is not None:
-        response = requests.get(swagger_url)
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        # requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+        response = requests.get(swagger_url, verify=False)
         data = json.loads(response.text, strict=False)
 
     elif swagger_url_json_path is not None:
@@ -59,10 +63,14 @@ def get_test_plan(swagger_url=None, swagger_url_json_path=None, swagger_json=Non
                                 else:
                                     for param in sample_value.get("parameters"):
                                         model_name = (param.get("name"))[0].upper() + (param.get("name"))[1:]
-                                        if model_name in list(definitions.keys()):
-                                            model_value = definitions.get(model_name)
-                                            for param_name, param_value in model_value.get("properties").items():
-                                                parameters[param_name] = "${" + param_name + "}"
+                                        # support YApi docs
+                                        try:
+                                            if model_name in list(definitions.keys()):
+                                                model_value = definitions.get(model_name)
+                                                for param_name, param_value in model_value.get("properties").items():
+                                                    parameters[param_name] = "${" + param_name + "}"
+                                        except AttributeError:
+                                            pass
                             thread_group['sample'].append(
                                 {"path": base_path + path_key, "method": method, "params": parameters,
                                  "sampler_comments": sample_value.get("summary")})
