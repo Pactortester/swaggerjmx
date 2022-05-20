@@ -88,6 +88,10 @@ conversion()
 
 ![image](https://user-images.githubusercontent.com/29191106/88256407-d91b9380-cced-11ea-910b-cafaec9ae158.png)
 
+## 趋势图
+
+[![Stargazers over time](https://starchart.cc/Pactortester/swaggerjmx.svg)](https://starchart.cc/Pactortester/swaggerjmx)
+
 ## Contributors
 
 <a href="https://github.com/Pactortester/swaggerjmx/graphs/contributors">
