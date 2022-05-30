@@ -33,7 +33,6 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
         "Topic :: Security",
         "Topic :: Internet :: WWW/HTTP",
-        "Topic :: Internet :: Convert Servers",
         "Topic :: Software Development :: Testing",
         "Typing :: Typed",
     ],
