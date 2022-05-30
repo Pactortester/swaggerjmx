@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+import re
 import time
 
 from .get_swagger import get_test_plan
@@ -26,7 +27,10 @@ def conversion():
     try:
         if not os.path.exists(ST.report_path):
             os.mkdir(ST.report_path)
-        tree.write('{}/jmeter-'.format(ST.report_path) + file_name + '.jmx', pretty_print=True, xml_declaration=True,
+        # '/ \ : * ? " < > |'
+        replace_str = r"[\/\\\:\*\?\"\<\>\|]"
+        tree.write('{}/jmeter-'.format(ST.report_path) + re.sub(replace_str, "-", file_name) + '.jmx', pretty_print=True,
+                   xml_declaration=True,
                    encoding='utf-8')
         print('swagger convert jmx is success!')
     except FileNotFoundError as e:
