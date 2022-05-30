@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 from setuptools import setup, find_packages
+from swaggerjmx import __version__
+
 
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
     name="swaggerjmx",
-    version="1.0.7",
-    keywords=["pip", "swagger", "jmx", "swagger convert jmx"],
+    version=__version__,
+    keywords=["pip", "swagger", "jmx", "yapi", "swagger convert jmx"],
     description="swagger convert jmx",
     long_description=long_description,
     long_description_content_type='text/markdown',

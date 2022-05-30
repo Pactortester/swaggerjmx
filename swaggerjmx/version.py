@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-__version__ = "1.0.7"
-
 import os
 import sys
+
+from swaggerjmx import __version__
 
 
 def get_swagger_jmx_version():

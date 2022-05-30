@@ -3,8 +3,6 @@
 import requests
 import json
 
-import urllib3
-
 
 def get_test_plan(swagger_url=None, swagger_url_json_path=None, swagger_json=None):
     """
@@ -22,9 +20,7 @@ def get_test_plan(swagger_url=None, swagger_url_json_path=None, swagger_json=Non
         raise TypeError('Only one parameter can be passed!')
 
     elif swagger_url is not None:
-        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-        # requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-        response = requests.get(swagger_url, verify=False)
+        response = requests.get(swagger_url)
         data = json.loads(response.text, strict=False)
 
     elif swagger_url_json_path is not None:

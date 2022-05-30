@@ -5,14 +5,13 @@
 
 ## Logo
 
-![logo](https://github.com/Pactortester/swaggerjmx/blob/master/images/swaggerjmx.png)
-
+![logo](https://files.mdnice.com/user/17535/09daca64-e43e-44fa-af31-d785a75a9194.png)
 
 ## 安装
 
-
-pip install swaggerjmx
-
+```shell
+pip install -U swaggerjmx
+```
 
 ##  仓库地址：
 
@@ -30,14 +29,16 @@ pip install swaggerjmx
 ## 适用场景
 
 
-1. 由于接口测试脚本编写耗时，而且需要持续维护，耗时耗力，使用此工具可以一键生成接口测试脚本.
-2. swagger-ui接口文档一键生成jmx文件供jmeter使用.
+1. 由于接口测试脚本编写耗时，而且需要持续维护，耗时耗力，使用此工具可以一键生成接口测试脚本。
+2. swagger-ui接口文档一键生成jmx文件供jmeter使用。
+3. yapi口文档一键生成jmx文件供jmeter使用。
 
 
 ## 功能
 
 
-1. 将swagger-ui文档转换为jmx文件
+1. 将swagger-ui文档转换为jmx文件。
+2. 将yapi文档转换为jmx文件。
 
 
 ## Demo_1
