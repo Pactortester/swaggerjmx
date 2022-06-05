@@ -120,7 +120,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
-
+tests/jmx
 # mypy
 .mypy_cache/
 .dmypy.json
