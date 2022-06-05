@@ -34,7 +34,7 @@ def get_test_plan(swagger_url=None, swagger_url_json_path=None, swagger_json=Non
 
     title = data.get("info")["title"]
     host = data.get("host")
-    base_path = data.get("basePath")
+    base_path = data.get("basePath", '')
     path = data.get("paths")
     thread_groups = data.get("tags")
     definitions = data.get("definitions")

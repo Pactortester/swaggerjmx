@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
 import re
-import time
 
-from .get_swagger import get_test_plan
-from .to_jmx import *
-from .settings import Settings as ST
+from swaggerjmx.get_swagger import get_test_plan
+from swaggerjmx.to_jmx import *
+from swaggerjmx.settings import Settings as ST
 
 
 def conversion():
