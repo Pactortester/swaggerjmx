@@ -5,6 +5,7 @@ import re
 from swaggerjmx.get_swagger import get_test_plan
 from swaggerjmx.to_jmx import *
 from swaggerjmx.settings import Settings as ST
+from loguru import logger
 
 
 def conversion():
@@ -31,7 +32,7 @@ def conversion():
         tree.write('{}/jmeter-'.format(ST.report_path) + re.sub(replace_str, "-", file_name) + '.jmx', pretty_print=True,
                    xml_declaration=True,
                    encoding='utf-8')
-        print('swagger convert jmx is success!')
+        logger.info('swagger convert jmx is success!')
     except FileNotFoundError as e:
-        print(e)
-        print('swagger convert jmx is fail!')
+        logger.error(e)
+        logger.error('swagger convert jmx is fail!')

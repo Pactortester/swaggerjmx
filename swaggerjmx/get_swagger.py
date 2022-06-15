@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
+from json import JSONDecodeError
 
 import requests
 import json
+from loguru import logger
 
 
 def get_test_plan(swagger_url=None, swagger_url_json_path=None, swagger_json=None):
@@ -21,9 +25,18 @@ def get_test_plan(swagger_url=None, swagger_url_json_path=None, swagger_json=Non
 
     elif swagger_url is not None:
         response = requests.get(swagger_url)
-        data = json.loads(response.text, strict=False)
+        try:
+            data = json.loads(response.text, strict=False)
+        except JSONDecodeError as e:
+            logger.error(f"The response value of {swagger_url} is not in json format")
+            logger.warning("Please check if you have access rights?")
+            logger.warning("Maybe you should use swagger json file to convert!")
+            sys.exit(0)
 
     elif swagger_url_json_path is not None:
+        if not os.path.exists(swagger_url_json_path):
+            logger.error(f"FileNotFoundError: [Errno 2] No such file or directory: '{swagger_url_json_path}'")
+            sys.exit(0)
         try:
             with open(swagger_url_json_path, 'r', encoding='utf-8') as f:
                 data = json.load(f, strict=False)

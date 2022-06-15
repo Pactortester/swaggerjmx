@@ -111,15 +111,6 @@ def arguments(parent_xml):
     Arguments.set("enabled", "true")
     collectionProp = etree.SubElement(Arguments, "collectionProp")
     collectionProp.set("name", "Arguments.arguments")
-    # elementProp = etree.SubElement(Arguments, "elementProp") common_api(elementProp, {"name":
-    # "ThreadGroup.main_controller", "elementType": "LoopController", "guiclass": "LoopControlPanel", "testclass":
-    # "LoopController", "testname": "Loop Controller", "enabled": "true"})
-
-    # collectionProp.set("name", "Argument.name")
-    # collectionProp.text = '${baseUrl}'
-    # collectionProp = etree.SubElement(elementProp, "stringProp")
-    # collectionProp.set("name", "Argument.value")
-    # collectionProp.text = '1'
     return etree.SubElement(parent_xml, "hashTree")
 
 

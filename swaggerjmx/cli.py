@@ -18,12 +18,9 @@ def main():
     parser = argparse.ArgumentParser(description=__description__)
 
     parser.add_argument(
-        "-v", "--version", dest="version", action="store_true", help="show version"
-    )
-    parser.add_argument(
         '-i', '--input', help='The input swagger json file or swagger url.', required=True)
     parser.add_argument(
-        '-o', '--output', help='The output jmx file path(default jmx). If it exists, new endpoints will be overwrite.',
+        '-o', '--output', help='The output jmx file path(default jmx). If it exists, old file will be overwrite.',
         default="jmx")
 
     args = parser.parse_args()

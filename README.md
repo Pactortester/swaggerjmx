@@ -17,7 +17,7 @@ pip install -U swaggerjmx
 
 
 - github：https://github.com/Pactortester/swaggerjmx.git
-- pypi：https://pypi.org/project/swaggerjmx/#history
+- pypi：https://pypi.org/project/swaggerjmx
 
 
 ## 社区地址
@@ -40,8 +40,8 @@ pip install -U swaggerjmx
 1. 将swagger-ui文档转换为jmx文件。
 2. 将yapi文档转换为jmx文件。
 
-
-## Demo_1
+## 代码方式
+### Demo_1
 - 可以直接访问 swagger_url (http://ip:port/v2/api-doc) 不需要登录的，使用Demo_1方式转换
 
 ```python
@@ -59,7 +59,7 @@ conversion()
 ```
 
 
-## Demo_2
+### Demo_2
 - 需要登录才能访问的，可以复制swagger_url页面上的json信息，保存json文件，使用Demo_2方式转换
 
 ```python
@@ -74,6 +74,26 @@ ST.report_path = 'jmx'
 # 开始转换
 conversion()
 
+```
+
+## 命令行方式
+### 预置参数
+```shell
+(venv) lijiawei@bogon swaggerjmx % swaggerjmx -h
+usage: swaggerjmx [-h] -i INPUT [-o OUTPUT]
+
+Swagger or YApi convert jmx tool! Created: Lijiawei. Version 1.1.0
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+                        The input swagger json file or swagger url.
+  -o OUTPUT, --output OUTPUT
+                        The output jmx file path(default jmx). If it exists, new endpoints will be overwrite.
+```
+### 使用方式
+```shell
+swaggerjmx -i <path_to_swagger_json_or_swagger_url> -o <path_to_output_jmx>
 ```
 ## 截图：
 
