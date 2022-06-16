@@ -13,7 +13,7 @@ def jmeter_test_plan(root_xml):
     JmeterTestPlan = root_xml
     JmeterTestPlan.set('version', '1.2')
     JmeterTestPlan.set('properties', '5.0')
-    JmeterTestPlan.set('jmeter', '5.1.1 r1855137')
+    JmeterTestPlan.set('jmeter', '5.4.3')
     return etree.SubElement(JmeterTestPlan, 'hashTree')
 
 

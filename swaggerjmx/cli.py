@@ -8,7 +8,7 @@
 """
 import argparse
 import sys
-from swaggerjmx import __description__, __version__
+from swaggerjmx import __description__
 from swaggerjmx.convert import conversion
 
 
