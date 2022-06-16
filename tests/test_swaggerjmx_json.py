@@ -17,4 +17,4 @@ def test_swaggerjmx_json():
     ST.report_path = 'jmx'
     # 开始转换
     conversion()
-    assert os.path.exists('./jmx/jmeter-Swagger Petstore.jmx')
+    assert os.path.exists('./jmx/jmeter-Swagger-Petstore.jmx')
