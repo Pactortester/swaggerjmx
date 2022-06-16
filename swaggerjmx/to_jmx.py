@@ -13,7 +13,7 @@ def jmeter_test_plan(root_xml):
     JmeterTestPlan = root_xml
     JmeterTestPlan.set('version', '1.2')
     JmeterTestPlan.set('properties', '5.0')
-    JmeterTestPlan.set('jmeter', '5.1.1 r1855137')
+    JmeterTestPlan.set('jmeter', '5.4.3')
     return etree.SubElement(JmeterTestPlan, 'hashTree')
 
 
@@ -111,15 +111,6 @@ def arguments(parent_xml):
     Arguments.set("enabled", "true")
     collectionProp = etree.SubElement(Arguments, "collectionProp")
     collectionProp.set("name", "Arguments.arguments")
-    # elementProp = etree.SubElement(Arguments, "elementProp") common_api(elementProp, {"name":
-    # "ThreadGroup.main_controller", "elementType": "LoopController", "guiclass": "LoopControlPanel", "testclass":
-    # "LoopController", "testname": "Loop Controller", "enabled": "true"})
-
-    # collectionProp.set("name", "Argument.name")
-    # collectionProp.text = '${baseUrl}'
-    # collectionProp = etree.SubElement(elementProp, "stringProp")
-    # collectionProp.set("name", "Argument.value")
-    # collectionProp.text = '1'
     return etree.SubElement(parent_xml, "hashTree")
 
 

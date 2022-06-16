@@ -3,14 +3,13 @@
 from setuptools import setup, find_packages
 from swaggerjmx import __version__
 
-
 with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
     name="swaggerjmx",
     version=__version__,
-    keywords=["pip", "swagger", "jmx", "yapi", "swagger convert jmx"],
+    keywords=["pip", "swagger", "jmx", "yapi", "swaggerjmx", "jmeter", "swagger convert jmx"],
     description="swagger convert jmx",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -36,9 +35,12 @@ setup(
         "Topic :: Software Development :: Testing",
         "Typing :: Typed",
     ],
-
+    entry_points="""
+    [console_scripts]
+    swaggerjmx = swaggerjmx.cli:main
+    """,
     packages=find_packages(),
     include_package_data=True,
     platforms="any",
-    install_requires=["lxml", "requests"]
+    install_requires=["lxml", "requests", "loguru"]
 )

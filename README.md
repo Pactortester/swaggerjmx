@@ -1,8 +1,8 @@
 # swaggerjmx
 
-[![Build Status](https://travis-ci.com/Pactortester/swaggerjmx.svg?branch=master)](https://travis-ci.com/Pactortester/swaggerjmx) ![PyPI](https://img.shields.io/pypi/v/swaggerjmx) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/swaggerjmx) ![GitHub top language](https://img.shields.io/github/languages/top/Pactortester/swaggerjmx) [![Downloads](https://static.pepy.tech/personalized-badge/swaggerjmx?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=downloads/total)](https://pepy.tech/project/swaggerjmx) ![GitHub stars](https://img.shields.io/github/stars/Pactortester/swaggerjmx?style=social) ![https://blog.csdn.net/flower_drop](https://img.shields.io/badge/csdn-%40flower__drop-orange)
+[![codecov](https://codecov.io/gh/swaggerjmx/branch/main/graph/badge.svg)](https://codecov.io/gh/swaggerjmx) ![PyPI](https://img.shields.io/pypi/v/swaggerjmx) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/swaggerjmx) ![GitHub top language](https://img.shields.io/github/languages/top/Pactortester/swaggerjmx) [![Downloads](https://static.pepy.tech/personalized-badge/swaggerjmx?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=downloads/total)](https://pepy.tech/project/swaggerjmx) ![GitHub stars](https://img.shields.io/github/stars/Pactortester/swaggerjmx?style=social) ![https://blog.csdn.net/flower_drop](https://img.shields.io/badge/csdn-%40flower__drop-orange)
 
-
+**[English Document](./README_en.md)**
 ## Logo
 
 ![logo](https://files.mdnice.com/user/17535/09daca64-e43e-44fa-af31-d785a75a9194.png)
@@ -13,11 +13,11 @@
 pip install -U swaggerjmx
 ```
 
-##  仓库地址：
+##  仓库地址
 
 
 - github：https://github.com/Pactortester/swaggerjmx.git
-- pypi：https://pypi.org/project/swaggerjmx/#history
+- pypi：https://pypi.org/project/swaggerjmx
 
 
 ## 社区地址
@@ -31,7 +31,7 @@ pip install -U swaggerjmx
 
 1. 由于接口测试脚本编写耗时，而且需要持续维护，耗时耗力，使用此工具可以一键生成接口测试脚本。
 2. swagger-ui接口文档一键生成jmx文件供jmeter使用。
-3. yapi口文档一键生成jmx文件供jmeter使用。
+3. yapi接口文档一键生成jmx文件供jmeter使用。
 
 
 ## 功能
@@ -40,8 +40,8 @@ pip install -U swaggerjmx
 1. 将swagger-ui文档转换为jmx文件。
 2. 将yapi文档转换为jmx文件。
 
-
-## Demo_1
+## 代码方式
+### Demo_1
 - 可以直接访问 swagger_url (http://ip:port/v2/api-doc) 不需要登录的，使用Demo_1方式转换
 
 ```python
@@ -59,7 +59,7 @@ conversion()
 ```
 
 
-## Demo_2
+### Demo_2
 - 需要登录才能访问的，可以复制swagger_url页面上的json信息，保存json文件，使用Demo_2方式转换
 
 ```python
@@ -74,6 +74,34 @@ ST.report_path = 'jmx'
 # 开始转换
 conversion()
 
+```
+
+## 命令行方式
+### 预置参数
+```shell
+(venv) lijiawei@bogon swaggerjmx % swaggerjmx -h
+usage: swaggerjmx [-h] -i INPUT [-o OUTPUT]
+
+Swagger or YApi convert jmx tool! Created: Lijiawei. Version 1.1.0
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+                        The input swagger json file or swagger url.
+  -o OUTPUT, --output OUTPUT
+                        The output jmx file path(default jmx). If it exists, new endpoints will be overwrite.
+```
+### 使用方式
+```shell
+swaggerjmx -i <path_to_swagger_json_or_swagger_url> -o <path_to_output_jmx>
+```
+### swagger json example
+```shell
+swaggerjmx -i tests/data/swagger.json -o jmx
+```
+### swagger url example
+```shell
+swaggerjmx -i https://ip:port/v2/api-docs -o jmx
 ```
 ## 截图：
 
@@ -98,6 +126,13 @@ conversion()
 <a href="https://github.com/Pactortester/swaggerjmx/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Pactortester/swaggerjmx" />
 </a>
+
+## 贡献
+```shell
+git clone git@github.com:Pactortester/swaggerjmx.git
+cd swaggerjmx
+pip install -e .
+```
 
 ## 
 

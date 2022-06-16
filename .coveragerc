@@ -1,0 +1,4 @@
+[run]
+omit =
+	swaggerjmx/version.py
+	swaggerjmx/cli.py

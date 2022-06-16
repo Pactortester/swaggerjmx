@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 .idea
+jmx
 __pycache__/
 *.py[cod]
 *$py.class
@@ -120,7 +121,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
-
+tests/jmx
 # mypy
 .mypy_cache/
 .dmypy.json
