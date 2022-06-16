@@ -93,6 +93,14 @@ optional arguments:
 ```shell
 swaggerjmx -i <path_to_swagger_json_or_swagger_url> -o <path_to_output_jmx>
 ```
+### swagger json example
+```shell
+swaggerjmx -i tests/data/swagger.json -o jmx
+```
+### swagger url example
+```shell
+swaggerjmx -i https://ip:port/v2/api-docs -o jmx
+```
 ## Screenshot：
 
 1. Pass in the swagger-ui address in the red box.
