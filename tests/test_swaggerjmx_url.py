@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 
 from swaggerjmx.convert import conversion
@@ -10,11 +9,11 @@ def test_swaggerjmx_url():
         #  swagger_url
         ST.swagger_json = None
         ST.swagger_url_json_path = None
-        ST.swagger_url = 'https://www.baidu.com'
+        ST.swagger_url = "https://www.baidu.com"
         # 'https://ip:port/v2/api-docs'
         #  report_path
-        ST.report_path = 'jmx'
+        ST.report_path = "jmx"
         # 开始转换
         conversion()
     except SystemExit:
-        assert os.path.exists('./jmx/jmeter-Swagger-Petstore.jmx')
+        assert os.path.exists("./jmx/jmeter-Swagger-Petstore.jmx")

@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-
 import json
+
 from lxml import etree
 
 
@@ -11,10 +10,10 @@ def jmeter_test_plan(root_xml):
     :return:
     """
     JmeterTestPlan = root_xml
-    JmeterTestPlan.set('version', '1.2')
-    JmeterTestPlan.set('properties', '5.0')
-    JmeterTestPlan.set('jmeter', '5.4.3')
-    return etree.SubElement(JmeterTestPlan, 'hashTree')
+    JmeterTestPlan.set("version", "1.2")
+    JmeterTestPlan.set("properties", "5.0")
+    JmeterTestPlan.set("jmeter", "5.4.3")
+    return etree.SubElement(JmeterTestPlan, "hashTree")
 
 
 def test_plan(parent_xml, plan_name):
@@ -24,14 +23,14 @@ def test_plan(parent_xml, plan_name):
     :param plan_name:
     :return:
     """
-    testPlan = etree.SubElement(parent_xml, 'TestPlan')
+    testPlan = etree.SubElement(parent_xml, "TestPlan")
     testPlan.set("guiclass", "TestPlanGui")
     testPlan.set("testclass", "TestPlan")
     testPlan.set("testname", plan_name)
     testPlan.set("enabled", "true")
     stringProp = etree.SubElement(testPlan, "stringProp")
     stringProp.set("name", "TestPlan.comments")
-    stringProp.text = ''
+    stringProp.text = ""
     boolProp1 = etree.SubElement(testPlan, "boolProp")
     boolProp1.set("name", "TestPlan.functional_mode")
     boolProp1.text = "false"
@@ -52,8 +51,8 @@ def test_plan(parent_xml, plan_name):
     collectionProp.set("name", "Arguments.arguments")
     stringProp2 = etree.SubElement(testPlan, "stringProp")
     stringProp2.set("name", "TestPlan.user_define_classpath")
-    stringProp2.text = ''
-    return etree.SubElement(parent_xml, 'hashTree')
+    stringProp2.text = ""
+    return etree.SubElement(parent_xml, "hashTree")
 
 
 def thread_group(parent_xml):
@@ -71,9 +70,17 @@ def thread_group(parent_xml):
     stringProp.set("name", "ThreadGroup.on_sample_error")
     stringProp.text = "continue"
     elementProp = etree.SubElement(theadGroup, "elementProp")
-    common_api(elementProp,
-               {"name": "ThreadGroup.main_controller", "elementType": "LoopController", "guiclass": "LoopControlPanel",
-                "testclass": "LoopController", "testname": "Loop Controller", "enabled": "true"})
+    common_api(
+        elementProp,
+        {
+            "name": "ThreadGroup.main_controller",
+            "elementType": "LoopController",
+            "guiclass": "LoopControlPanel",
+            "testclass": "LoopController",
+            "testname": "Loop Controller",
+            "enabled": "true",
+        },
+    )
     boolProp = etree.SubElement(elementProp, "boolProp")
     boolProp.set("name", "LoopController.continue_forever")
     boolProp.text = "false"
@@ -91,10 +98,10 @@ def thread_group(parent_xml):
     boolProp.text = "false"
     stringProp = etree.SubElement(theadGroup, "stringProp")
     stringProp.set("name", "ThreadGroup.duration")
-    stringProp.text = ''
+    stringProp.text = ""
     stringProp = etree.SubElement(theadGroup, "stringProp")
     stringProp.set("name", "ThreadGroup.delay")
-    stringProp.text = ''
+    stringProp.text = ""
     return etree.SubElement(parent_xml, "hashTree")
 
 
@@ -133,15 +140,30 @@ def controller(parent_xml, result):
         shashTree = etree.SubElement(parent_xml, "hashTree")
         for sample in data.get("sample"):
             HTTPSamplerProxy = etree.SubElement(shashTree, "HTTPSamplerProxy")
-            common_api(HTTPSamplerProxy,
-                       {"guiclass": "HttpTestSampleGui", "testclass": "HTTPSamplerProxy",
-                        "testname": sample.get('sampler_comments') + '-' + str(sample.get('path')).replace('//', '/'),
-                        "enabled": "true"})
+            common_api(
+                HTTPSamplerProxy,
+                {
+                    "guiclass": "HttpTestSampleGui",
+                    "testclass": "HTTPSamplerProxy",
+                    "testname": sample.get("sampler_comments")
+                    + "-"
+                    + str(sample.get("path")).replace("//", "/"),
+                    "enabled": "true",
+                },
+            )
             if sample.get("params").__len__() < 1:
                 elementProp = etree.SubElement(HTTPSamplerProxy, "elementProp")
-                common_api(elementProp, {"name": "HTTPsampler.Arguments", "elementType": "Arguments",
-                                         "guiclass": "HTTPArgumentsPanel", "testclass": "Arguments",
-                                         "testname": "User Defined Variables", "enabled": "true"})
+                common_api(
+                    elementProp,
+                    {
+                        "name": "HTTPsampler.Arguments",
+                        "elementType": "Arguments",
+                        "guiclass": "HTTPArgumentsPanel",
+                        "testclass": "Arguments",
+                        "testname": "User Defined Variables",
+                        "enabled": "true",
+                    },
+                )
                 collectionProp = etree.SubElement(elementProp, "collectionProp")
                 collectionProp.set("name", "Arguments.arguments")
             else:
@@ -149,7 +171,10 @@ def controller(parent_xml, result):
                 boolProp.set("name", "HTTPSampler.postBodyRaw")
                 boolProp.text = "true"
                 elementProp = etree.SubElement(HTTPSamplerProxy, "elementProp")
-                common_api(elementProp, {"name": "HTTPsampler.Arguments", "elementType": "Arguments"})
+                common_api(
+                    elementProp,
+                    {"name": "HTTPsampler.Arguments", "elementType": "Arguments"},
+                )
                 collectionProp = etree.SubElement(elementProp, "collectionProp")
                 collectionProp.set("name", "Arguments.arguments")
                 elementProp = etree.SubElement(collectionProp, "elementProp")
@@ -191,7 +216,9 @@ def controller(parent_xml, result):
             # path
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
             stringProp.set("name", "HTTPSampler.path")
-            stringProp.text = '${baseUrl}' + str(sample.get("path")).replace('//', '/').replace('/{', '/${')
+            stringProp.text = "${baseUrl}" + str(sample.get("path")).replace(
+                "//", "/"
+            ).replace("/{", "/${")
 
             # method
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")

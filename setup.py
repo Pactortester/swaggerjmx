@@ -1,20 +1,28 @@
 #!/usr/bin/env python
-# -*- coding:utf-8 -*-
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from setuptools import setup
+
 from swaggerjmx import __version__
 
-with open('README.md', encoding='utf-8') as f:
+with open("README.md", encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
     name="swaggerjmx",
     version=__version__,
-    keywords=["pip", "swagger", "jmx", "yapi", "swaggerjmx", "jmeter", "swagger convert jmx"],
+    keywords=[
+        "pip",
+        "swagger",
+        "jmx",
+        "yapi",
+        "swaggerjmx",
+        "jmeter",
+        "swagger convert jmx",
+    ],
     description="swagger convert jmx",
     long_description=long_description,
-    long_description_content_type='text/markdown',
+    long_description_content_type="text/markdown",
     license="MIT Licence",
-
     url="https://github.com/Pactortester/swaggerjmx",
     author="lijiawei",
     author_email="1456470136@qq.com",
@@ -42,5 +50,5 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     platforms="any",
-    install_requires=["lxml", "requests", "loguru"]
+    install_requires=["lxml", "requests", "loguru"],
 )

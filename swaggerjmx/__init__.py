@@ -1,2 +1,4 @@
 __version__ = "1.1.1"
-__description__ = "Swagger or YApi convert jmx tool! Created: Lijiawei. Version {}".format(__version__)
+__description__ = (
+    f"Swagger or YApi convert jmx tool! Created: Lijiawei. Version {__version__}"
+)

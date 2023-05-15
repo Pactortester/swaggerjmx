@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 
 from swaggerjmx.convert import conversion
@@ -9,9 +8,13 @@ def test_swaggerjmx_json_file():
     # swagger or yapi json path
     ST.swagger_json = None
     ST.swagger_url = None
-    ST.swagger_url_json_path = os.path.join(str(__file__).replace("test_swaggerjmx_json_file.py", ""), 'data', 'swagger.json')
+    ST.swagger_url_json_path = os.path.join(
+        str(__file__).replace("test_swaggerjmx_json_file.py", ""),
+        "data",
+        "swagger.json",
+    )
     #  report_path
-    ST.report_path = 'jmx'
+    ST.report_path = "jmx"
     # 开始转换
     conversion()
-    assert os.path.exists('./jmx/jmeter-Swagger-Petstore.jmx')
+    assert os.path.exists("./jmx/jmeter-Swagger-Petstore.jmx")
