@@ -1,0 +1,38 @@
+name: autofix.ci
+on:
+  workflow_call:
+  pull_request:
+  push:
+    branches: [ "main" ]
+permissions:
+  contents: read
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Upgrade to the latest Python syntax with https://github.com/asottile/pyupgrade
+      - uses: install-pinned/pyupgrade@af7d65f31bddb01097a24da6c8fb694441f51cba
+      - name: Run pyupgrade
+        run: |  
+          shopt -s globstar
+          pyupgrade --exit-zero-even-if-changed --py39-plus **/*.py
+
+      # Sort imports with https://github.com/asottile/reorder_python_imports
+      - uses: install-pinned/reorder_python_imports@9766e7ba4f33497b107014571afe3b5f4c2d946b
+      - name: Run reorder-python-imports
+        run: |
+         shopt -s globstar
+         reorder-python-imports --exit-zero-even-if-changed --py39-plus **/*.py
+
+      # Remove unused imports with https://github.com/PyCQA/autoflake
+      - uses: install-pinned/autoflake@46b4898323be58db319656fe2758f3fd5ddfee32
+      - run: autoflake --in-place --remove-all-unused-imports -r .
+
+      # Format code with https://github.com/psf/black
+      - uses: install-pinned/black@98d42bad3459705a15b069b0f4dfd9e2b2d63a2b
+      - run: black .
+
+      - uses: autofix-ci/action@8bc06253bec489732e5f9c52884c7cace15c0160
