@@ -9,6 +9,7 @@ from loguru import logger
 
 
 HTTP_METHODS = {"delete", "get", "head", "options", "patch", "post", "put"}
+MISSING = object()
 
 
 def get_test_plan(swagger_url=None, swagger_url_json_path=None, swagger_json=None):
@@ -126,7 +127,7 @@ def _parse_parameter(parameter, operation, sample, schemas, data):
     elif param_in == "header":
         sample["header_params"][name] = _variable(name)
     elif param_in == "formData":
-        sample["form_params"][name] = _variable(name)
+        sample["form_params"][name] = _schema_to_value(parameter, schemas, data, name)
         if parameter.get("type") == "file":
             sample["multipart"] = True
         sample["content_type"] = _operation_content_type(operation) or (
@@ -135,7 +136,9 @@ def _parse_parameter(parameter, operation, sample, schemas, data):
     elif param_in == "body":
         body_name = name or "body"
         schema = parameter.get("schema") or _named_schema(body_name, schemas)
-        raw_body = _schema_to_value(schema, schemas, data, body_name)
+        raw_body = _explicit_value(parameter)
+        if raw_body is MISSING:
+            raw_body = _schema_to_value(schema, schemas, data, body_name)
         sample["raw_body"] = raw_body
         sample["body_params"] = _body_params(raw_body, body_name)
         sample["content_type"] = _operation_content_type(operation) or "application/json"
@@ -175,8 +178,8 @@ def _schema_to_params(schema, schemas, data):
         return {}
 
     params = {}
-    for name in properties.keys():
-        params[name] = _variable(name)
+    for name, schema in properties.items():
+        params[name] = _schema_to_value(schema, schemas, data, name)
     return params
 
 
@@ -185,7 +188,11 @@ def _schema_to_value(schema, schemas, data, name):
     if schema is None:
         schema = _named_schema(name, schemas)
     if not isinstance(schema, dict):
-        return _variable(name)
+        return "test"
+
+    explicit_value = _explicit_value(schema)
+    if explicit_value is not MISSING:
+        return explicit_value
 
     if "allOf" in schema:
         merged = {}
@@ -207,7 +214,38 @@ def _schema_to_value(schema, schemas, data, name):
             for prop_name, prop_schema in properties.items()
         }
 
-    return _variable(name)
+    return _fallback_value(schema)
+
+
+def _explicit_value(schema):
+    if not isinstance(schema, dict):
+        return MISSING
+    for key in ("example", "default"):
+        if key in schema:
+            return schema.get(key)
+    enum_values = schema.get("enum") or []
+    if enum_values:
+        return enum_values[0]
+    return MISSING
+
+
+def _fallback_value(schema):
+    schema_type = schema.get("type")
+    schema_format = schema.get("format")
+
+    if schema_type == "integer":
+        return 1
+    if schema_type == "number":
+        return 1.0
+    if schema_type == "boolean":
+        return True
+    if schema_type == "file" or schema_format in ("binary", "byte"):
+        return "test-file"
+    if schema_format == "date":
+        return "2024-01-01"
+    if schema_format == "date-time":
+        return "2024-01-01T00:00:00Z"
+    return "test"
 
 
 def _body_params(raw_body, name):
