@@ -140,67 +140,42 @@ def controller(parent_xml, result):
         shashTree = etree.SubElement(parent_xml, "hashTree")
         for sample in data.get("sample"):
             HTTPSamplerProxy = etree.SubElement(shashTree, "HTTPSamplerProxy")
+            sample_path = str(sample.get("path")).replace("//", "/")
+            sampler_comments = sample.get("sampler_comments") or ""
             common_api(
                 HTTPSamplerProxy,
                 {
                     "guiclass": "HttpTestSampleGui",
                     "testclass": "HTTPSamplerProxy",
-                    "testname": sample.get("sampler_comments")
-                    + "-"
-                    + str(sample.get("path")).replace("//", "/"),
+                    "testname": sampler_comments + "-" + sample_path,
                     "enabled": "true",
                 },
             )
-            if sample.get("params").__len__() < 1:
-                elementProp = etree.SubElement(HTTPSamplerProxy, "elementProp")
-                common_api(
-                    elementProp,
-                    {
-                        "name": "HTTPsampler.Arguments",
-                        "elementType": "Arguments",
-                        "guiclass": "HTTPArgumentsPanel",
-                        "testclass": "Arguments",
-                        "testname": "User Defined Variables",
-                        "enabled": "true",
-                    },
-                )
-                collectionProp = etree.SubElement(elementProp, "collectionProp")
-                collectionProp.set("name", "Arguments.arguments")
-            else:
+
+            raw_body = _raw_body(sample)
+            if raw_body is not None:
                 boolProp = etree.SubElement(HTTPSamplerProxy, "boolProp")
                 boolProp.set("name", "HTTPSampler.postBodyRaw")
                 boolProp.text = "true"
-                elementProp = etree.SubElement(HTTPSamplerProxy, "elementProp")
-                common_api(
-                    elementProp,
-                    {"name": "HTTPsampler.Arguments", "elementType": "Arguments"},
-                )
-                collectionProp = etree.SubElement(elementProp, "collectionProp")
-                collectionProp.set("name", "Arguments.arguments")
-                elementProp = etree.SubElement(collectionProp, "elementProp")
-                elementProp.set("name", "")
-                elementProp.set("elementType", "HTTPArgument")
-                boolProp = etree.SubElement(elementProp, "boolProp")
-                boolProp.set("name", "HTTPArgument.always_encode")
-                boolProp.text = "false"
-                stringProp = etree.SubElement(elementProp, "stringProp")
-                stringProp.set("name", "Argument.value")
-                # stringProp.text = json.dumps(sample.get("params")).replace("\"", "&quot;")
-                stringProp.text = json.dumps(sample.get("params"))
-                stringProp = etree.SubElement(elementProp, "stringProp")
-                stringProp.set("name", "Argument.metadata")
-                stringProp.text = "="
+
+            collectionProp = _arguments(HTTPSamplerProxy)
+            if raw_body is not None:
+                _http_argument(collectionProp, "", _json_body(raw_body))
+            else:
+                for name, value in _request_params(sample).items():
+                    _http_argument(collectionProp, name, value)
+
             # host
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
             stringProp.set("name", "HTTPSampler.domain")
             # stringProp.text = data.get("host")
-            stringProp.text = data.get("")
+            stringProp.text = ""
 
             # port
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
             stringProp.set("name", "HTTPSampler.port")
             # stringProp.text = data.get("port")
-            stringProp.text = data.get("")
+            stringProp.text = ""
 
             # protocol
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
@@ -243,7 +218,7 @@ def controller(parent_xml, result):
             # DO MULTIPART POST
             boolProp = etree.SubElement(HTTPSamplerProxy, "boolProp")
             boolProp.set("name", "HTTPSampler.DO_MULTIPART_POST")
-            boolProp.text = "false"
+            boolProp.text = "true" if sample.get("multipart") else "false"
 
             # embedded url re
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
@@ -263,8 +238,121 @@ def controller(parent_xml, result):
             # comments
             stringProp = etree.SubElement(HTTPSamplerProxy, "stringProp")
             stringProp.set("name", "TestPlan.comments")
-            stringProp.text = sample.get("sampler_comments")
+            stringProp.text = sampler_comments
             hash_tree = etree.SubElement(shashTree, "hashTree")
+            _header_manager(hash_tree, sample)
+
+
+def _arguments(parent_xml):
+    elementProp = etree.SubElement(parent_xml, "elementProp")
+    common_api(
+        elementProp,
+        {
+            "name": "HTTPsampler.Arguments",
+            "elementType": "Arguments",
+            "guiclass": "HTTPArgumentsPanel",
+            "testclass": "Arguments",
+            "testname": "User Defined Variables",
+            "enabled": "true",
+        },
+    )
+    collectionProp = etree.SubElement(elementProp, "collectionProp")
+    collectionProp.set("name", "Arguments.arguments")
+    return collectionProp
+
+
+def _http_argument(parent_xml, name, value):
+    elementProp = etree.SubElement(parent_xml, "elementProp")
+    elementProp.set("name", name)
+    elementProp.set("elementType", "HTTPArgument")
+
+    boolProp = etree.SubElement(elementProp, "boolProp")
+    boolProp.set("name", "HTTPArgument.always_encode")
+    boolProp.text = "false"
+
+    stringProp = etree.SubElement(elementProp, "stringProp")
+    stringProp.set("name", "Argument.value")
+    stringProp.text = str(value)
+
+    stringProp = etree.SubElement(elementProp, "stringProp")
+    stringProp.set("name", "Argument.metadata")
+    stringProp.text = "="
+
+    boolProp = etree.SubElement(elementProp, "boolProp")
+    boolProp.set("name", "HTTPArgument.use_equals")
+    boolProp.text = "true"
+
+    stringProp = etree.SubElement(elementProp, "stringProp")
+    stringProp.set("name", "Argument.name")
+    stringProp.text = name
+
+
+def _request_params(sample):
+    if _has_typed_params(sample):
+        params = {}
+        params.update(sample.get("query_params") or {})
+        params.update(sample.get("form_params") or {})
+        return params
+    return sample.get("params") or {}
+
+
+def _raw_body(sample):
+    if _has_typed_params(sample):
+        return sample.get("raw_body")
+    params = sample.get("params") or {}
+    if params:
+        return params
+    return None
+
+
+def _has_typed_params(sample):
+    for key in (
+        "query_params",
+        "path_params",
+        "header_params",
+        "form_params",
+        "body_params",
+        "raw_body",
+    ):
+        if key in sample:
+            return True
+    return False
+
+
+def _json_body(raw_body):
+    if isinstance(raw_body, (dict, list)):
+        return json.dumps(raw_body)
+    return raw_body
+
+
+def _header_manager(parent_xml, sample):
+    headers = dict(sample.get("header_params") or {})
+    content_type = sample.get("content_type")
+    if content_type and not sample.get("multipart"):
+        header_names = [header_name.lower() for header_name in headers.keys()]
+        if "content-type" not in header_names:
+            headers["Content-Type"] = content_type
+    if not headers:
+        return
+
+    HeaderManager = etree.SubElement(parent_xml, "HeaderManager")
+    HeaderManager.set("guiclass", "HeaderPanel")
+    HeaderManager.set("testclass", "HeaderManager")
+    HeaderManager.set("testname", "HTTP Header Manager")
+    HeaderManager.set("enabled", "true")
+    collectionProp = etree.SubElement(HeaderManager, "collectionProp")
+    collectionProp.set("name", "HeaderManager.headers")
+    for name, value in headers.items():
+        elementProp = etree.SubElement(collectionProp, "elementProp")
+        elementProp.set("name", "")
+        elementProp.set("elementType", "Header")
+        stringProp = etree.SubElement(elementProp, "stringProp")
+        stringProp.set("name", "Header.name")
+        stringProp.text = name
+        stringProp = etree.SubElement(elementProp, "stringProp")
+        stringProp.set("name", "Header.value")
+        stringProp.text = value
+    etree.SubElement(parent_xml, "hashTree")
 
 
 def common_api(obj_xml, datas):
