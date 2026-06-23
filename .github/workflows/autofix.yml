@@ -11,6 +11,15 @@ jobs:
   autofix:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: cargo fmt
-      - uses: autofix-ci/action@8bc06253bec489732e5f9c52884c7cace15c0160
+      - uses: actions/checkout@v7
+
+      # Use uv to ensure we have the same ruff version in CI and locally.
+      - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39
+        with:
+          version: "0.4.20"
+      # Fix lint errors
+      - run: uv run ruff check --fix-only .
+      # Format code
+      - run: uv run ruff format .
+
+      - uses: autofix-ci/action@c5b2d67aa2274e7b5a18224e8171550871fc7e4a
