@@ -213,9 +213,7 @@ def _render_sample(sample):
     hash_tree = to_jmx.jmeter_test_plan(root)
     plan = to_jmx.test_plan(hash_tree, "test")
     thread = to_jmx.thread_group(plan)
-    to_jmx.controller(
-        thread, [{"name": "api", "description": "", "sample": [sample]}]
-    )
+    to_jmx.controller(thread, [{"name": "api", "description": "", "sample": [sample]}])
     return root
 
 

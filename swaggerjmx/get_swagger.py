@@ -87,7 +87,9 @@ def get_test_plan(swagger_url=None, swagger_url_json_path=None, swagger_json=Non
     return thread_groups, title
 
 
-def _build_sample(base_path, path_key, method, path_parameters, operation, schemas, data):
+def _build_sample(
+    base_path, path_key, method, path_parameters, operation, schemas, data
+):
     sample = {
         "path": _join_path(base_path, path_key),
         "method": method,
@@ -131,7 +133,9 @@ def _parse_parameter(parameter, operation, sample, schemas, data):
         if parameter.get("type") == "file":
             sample["multipart"] = True
         sample["content_type"] = _operation_content_type(operation) or (
-            "multipart/form-data" if sample["multipart"] else "application/x-www-form-urlencoded"
+            "multipart/form-data"
+            if sample["multipart"]
+            else "application/x-www-form-urlencoded"
         )
     elif param_in == "body":
         body_name = name or "body"
@@ -141,7 +145,9 @@ def _parse_parameter(parameter, operation, sample, schemas, data):
             raw_body = _schema_to_value(schema, schemas, data, body_name)
         sample["raw_body"] = raw_body
         sample["body_params"] = _body_params(raw_body, body_name)
-        sample["content_type"] = _operation_content_type(operation) or "application/json"
+        sample["content_type"] = (
+            _operation_content_type(operation) or "application/json"
+        )
 
 
 def _parse_request_body(request_body, sample, schemas, data):
@@ -306,7 +312,9 @@ def _get_thread_groups(data, paths):
             tag_name = _operation_tag(operation)
             if tag_name not in tag_names:
                 tag_names.append(tag_name)
-    return [{"name": tag_name, "description": ""} for tag_name in tag_names or ["default"]]
+    return [
+        {"name": tag_name, "description": ""} for tag_name in tag_names or ["default"]
+    ]
 
 
 def _operation_tag(operation):
